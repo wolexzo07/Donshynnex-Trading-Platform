@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CRYPTABUY</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/style3.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="css/specialCustom.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="css/btc.css" type="text/css" media="all"/>
+
+		<script type="text/javascript" src="js/Toast.js"></script>
+		<script type="text/javascript" src="js/hook.js"></script>
+        <script type="text/javascript" src="js/online.js"></script>
+		     <!-- jQuery CDN -->
+     <script src="js/jquery.js"></script>
+		
+		 <!----Jquery mobile css -->
+		 <!--<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>-->
+    </head>
+    <body>
+			<script type="text/javascript">
+	$(document).ready(function(){
+	$("#menuGist").click(function(){
+		$(".menuTag").toggle("slow");
+	});
+	$("#pendingBtn").click(function(){
+		$(".pending").show();
+		$(".approved").hide();
+		$(".cancelled").hide();
+	});
+	$("#approvedBtn").click(function(){
+		$(".pending").hide();
+		$(".approved").show();
+		$(".cancelled").hide();
+	});
+	$("#cancelledBtn").click(function(){
+		$(".pending").hide();
+		$(".approved").hide();
+		$(".cancelled").show();
+	});
+});
+</script>
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+           
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+			<div class="container-fluid">
+			<div class="row">
+			<div class="col-md-12">
+										
+							<h3 class="welcome"><b>Hi Precious</b> , <font id="lblGreetings" style="color:green">Welcome</font>&nbsp;<img src="img/smiley.png" style="width:20px;border-radius:50%;"/></h3>
+<script>
+    var myDate = new Date();
+    var hrs = myDate.getHours();
+
+    var greet;
+
+    if (hrs < 12)
+        greet = 'Good Morning';
+    else if (hrs >= 12 && hrs <= 17)
+        greet = 'Good Afternoon';
+    else if (hrs >= 17 && hrs <= 24)
+        greet = 'Good Evening';
+
+    document.getElementById('lblGreetings').innerHTML =
+        '<b>' + greet + '</b>';
+</script> 
+
+
+							<!--- <div class="line"></div>-->
+
+			</div>
+			</div>
+			</div>
+				
+				<!---------------Just make the content work---------------->
+			
+				<div class="container-fluid" id="calculate"></div>
+				
+				<!---------------Just make the content work---------------->
+		
+               
+            </div>
+        </div>
+
+
+
+ <div class="menuTag">
+	<ul class="list-group">
+		<li onclick="load('homedash.html')" class="list-group-item"><i class="fa fa-dashboard"></i>&nbsp;&nbsp; Dashboard 
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+		
+		<li onclick="load('bill.html')" class="list-group-item"><i class="fa fa-money"></i>&nbsp;&nbsp; Pay Bills 
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+		
+		<li onclick="load('addBank.html')" class="list-group-item"><i class="fa fa-plus"></i>&nbsp;&nbsp; Bank Details 
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+		
+		<li onclick="load('profile.html')" class="list-group-item"><i class="fa fa-user"></i> &nbsp;&nbsp;Profile
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+		
+		<li onclick="load('setting.html')" class="list-group-item"><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+		<li onclick="load('logout.html')" class="list-group-item"><i class="fa fa-sign-out"></i>&nbsp;&nbsp; Logout 
+		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+		</li>
+	
+	</ul>
+ 
+ </div>       
+
+<div class="mobilemenu">
+	<div class="container-fluid">
+	
+	<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<button id="menuGist" class="btn btn-updated"><i class="glyphicon glyphicon-align-left"></i><br/>Menu</button>
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<button onclick="load('homedash.html')" class="btn btn-updated"><i class="fa fa-credit-card"></i><br/>Top-up</button>
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<button onclick="gotop('')" class="btn btn-updated"><i class="fa fa-bitcoin"></i><br/>Buy-BTC</button>
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<button onclick="load('newsbox.html')" class="btn btn-updated"><i class="fa fa-money"></i><br/>Sell-BTC</button>
+		</div>
+	
+			
+	</div>
+	
+	</div>
+	
+</div>	
+ 
+       
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!----<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>--->
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		 <script type="text/javascript">
+            $(document).ready(function () {
+				load('homedash.html'); // Initializing the homepage
+          });
+        </script>
+		
+    </body>
+</html>

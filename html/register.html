@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>CrptaBuy - Register</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="css/custom.css"/>
+		<script src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/online.js"></script>
+    </head>
+    <body class="bold">
+
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bai">
+	<div class="logged">
+	<center>
+	<img src="img/logo5.png" class="img-responsive clon"/>
+	</center>
+	
+	<p class="" style="font-size:10pt;margin-top:10pt;text-transform:uppercase;"><font style="color:green;font-weight:bold;">NOTE :</font> All fields are required</p>
+	
+	<!----<script type="text/javascript" src="js/hookup.js"></script>--->
+	<script type="text/javascript" src="workitout.js"></script>
+<!----<form onsubmit="return processme()" method="GET" autocomplete="off">--->
+	
+<form id="register" method="POST" autocomplete="off">	
+
+<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-user"></span>
+</span>
+	<input type="text" autocomplete="off" required="required" name="name" id="name" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter Fullname" />
+</div>
+</div>
+
+
+
+<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-inbox"></span>
+</span>
+	<input type="email" autocomplete="off" required="required" name="email" id="email" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter valid email" />
+</div>
+</div>
+
+<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-lock"></span>
+</span>
+	<input type="password" autocomplete="off" required="required" name="passkey" id="passkey" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter password" />
+</div>
+</div>
+
+<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-calculator"></span>
+</span>
+	<input type="number" autocomplete="off" maxlength="11" required="required" name="mobile" id="mobile" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter valid mobile" />
+</div>
+</div>
+<input type="hidden" value="<?php echo sha1(uniqid());?>" name="etoken"/>
+
+<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-send"></span>
+</span>
+	<input type="submit" value="Register" type="button" class="btn btn-success btu" />
+</div>
+</div>
+	
+	</form>
+	
+	<div id="result"></div>
+	<style type="text/css">
+	#result{
+		color:green;
+		border:1px solid green;
+		padding:10px;
+		display:none;
+		}
+	</style>
+		
+		<div class="btn-group pull-right tio">
+	
+	<button onclick="window.location='login.html'" class="btn btn-primary pageu" type="submit"><i class="glyphicon glyphicon-log-in"></i> Login </button>
+	
+	<button onclick="window.location='reset.html'" class="btn btn-info pageu" type="submit"><i class="fa fa-key"></i> Lost Password</button>
+	
+	</div>
+	
+	
+	</div>
+	
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+	</div>
+	
+	</div>
+	
+	</div>
+	
+	
+     
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+         </script>
+		 	<script>
+	$(document).ready(function(){
+	$(".page").slideDown("slow").animate({
+	left:'200px',
+	height:'toggle'
+	}).fadeIn("slow");
+	
+	});
+	</script>
+	 <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
+
+<!----<div class="form-group" style="margin-top:10pt;">
+<div class="input-group date">
+<span class="input-group-addon">
+<span class="fa fa-user"></span>
+</span>
+<select class="form-control ema" required="required" name="pro" id="pos">
+<option value="">Who are you?</option>
+<option value="btc">Buy and Sell BTC</option>
+<option value="bill">Paying for Bills</option>
+<option value="both">I want to do both</option>
+</select>
+</div>
+</div>---->

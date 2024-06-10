@@ -1,0 +1,165 @@
+.btu{
+	width:100%;
+	padding:12px;
+	
+}
+.tio{
+
+margin-bottom:20pt;
+margin-top:25pt;
+
+}
+.ema{
+	width:100%;
+	height:50px;
+	
+}
+
+.pageu{
+width:;
+display:block;
+padding:12px;
+}
+
+.pagee{
+width:;
+display:none;
+padding:20px;
+}
+
+.pagem{
+width:200px;
+display:none;
+padding:15px;
+border-radius:20px;
+-moz-border-radius:20px;
+-webkit-border-radius:20px;
+-o-border-radius:20px;
+}
+
+
+
+
+.pagee_nio{
+margin-top:10pt;
+margin-bottom:10pt;
+
+}
+
+.pagy{
+width:100%;
+margin-top:10pt;
+display:none;
+padding:15px;
+}
+
+.page{
+margin-top:15pt;
+	width:100%;
+	height:;
+	display:none;
+	opacity:0.9;
+}
+
+.pagep{
+margin-top:15pt;
+	width:100%;
+	height:;
+	display:none;
+	opacity:0.9;
+}
+
+.clon{
+	width:100px;
+	/***margin-top:-80px;***/
+	margin-top:20px;
+}
+body.bold{
+	
+	background-image:url("../img/crypt2.png");
+	background-attachment:fixed;
+	/**background-position:center;**/
+	background-color:purple;
+	background-size:cover;
+	
+}
+.bai{
+	height:100%;
+	
+}
+
+.btitle{
+margin-bottom:10pt;	
+	
+}
+.plusme{
+color:green;	
+}
+
+/**********Newly Added styling*************************/
+.loginPanel{
+	padding-bottom:40pt;
+	margin-top:20%;
+	background:white;
+	opacity:0.9;
+	padding-left:20pt;
+	padding-right:20pt;
+	padding-top:20pt;
+	display:block;
+	border-radius:10pt;
+	-moz-border-radius:10pt;
+	-o-border-radius:10pt;
+	-webkit-border-radius:10pt;
+	-ms-border-radius:10pt;
+	
+}
+
+.registerPanel{
+	margin-top:20%;
+	background:white;
+	opacity:0.9;
+	padding-bottom:40pt;
+	padding-left:20pt;
+	padding-right:20pt;
+	padding-top:20pt;
+	display:none;
+	border-radius:10pt;
+	-moz-border-radius:10pt;
+	-o-border-radius:10pt;
+	-webkit-border-radius:10pt;
+	-ms-border-radius:10pt;
+}
+.resetPanel{
+	margin-top:20%;
+	background:white;
+	opacity:0.9;
+	padding-bottom:40pt;
+	padding-left:20pt;
+	padding-right:20pt;
+	padding-top:20pt;
+	display:none;
+	border-radius:10pt;
+	-moz-border-radius:10pt;
+	-o-border-radius:10pt;
+	-webkit-border-radius:10pt;
+	-ms-border-radius:10pt;
+}
+
+#Showresult{
+		color:green;
+		border:1px solid green;
+		padding:10px;
+		display:none;
+		}
+#LoginResult{
+	color:green;
+	border:0px solid green;
+	padding:10px;
+	display:none;
+	}
+#Resetresult{
+	color:green;
+	border:1px solid green;
+	padding:10px;
+	display:none;
+	}

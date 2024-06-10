@@ -1,0 +1,9 @@
+Dashboard.php === index.html
+Register.php  === Register.html
+Login.php	  === Login.html
+
+
+STATUS on Registration code 
+0=inactive
+1=active
+2=suspended

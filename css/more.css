@@ -1,0 +1,74 @@
+#calculate{
+	background-image:url();
+	background-attachment:fixed;
+	background-color:transparent;
+	padding-left:0pt;
+	padding-right:0pt;
+}
+
+#loadTemporal{
+	display:none;
+	position:fixed;
+	top:20%;
+	left:37%;
+	z-index:10000
+}
+
+.smiley-img{
+	width:20px;
+	border-radius:50%;
+}
+
+#notecounter{
+	font-size:6pt;
+	margin-bottom:10pt;
+}
+
+#lblGreetings{
+	color:green;	
+}
+
+.money-dex{
+	font-weight:bold;
+	font-size:15pt;
+}
+.glyphicon-circle-arrow-down{
+	color:green;
+}
+.glyphicon-circle-arrow-up{
+	color:gray;
+}
+.coin-design{
+	padding-bottom:8px;
+	padding-top:8px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius:200px;
+	-moz-border-radius:200px;
+	-webkit-border-radius:200px;
+	-o-border-radius:200px;
+	background-color:green;
+}
+
+.money-title{
+	font-weight:bold;
+}
+
+.money-dex{
+	
+}
+
+.small-money{
+	font-size:12pt;
+	color:gray;
+	font-weight:none;
+}
+
+.m-up{
+	
+	
+	
+}
+			
+			
+			
