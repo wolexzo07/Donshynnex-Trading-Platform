@@ -4,6 +4,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 /**Myown styler***/
+
 .timove{
 	font-size:70pt;
 	/**text-align:center;***/
@@ -129,7 +130,6 @@
   height:;
   padding-top:0pt;
   padding-bottom:0pt;
-  font-size:6pt;
   z-index:10000;
    
 }
@@ -137,6 +137,9 @@
 .btn-updated{
 	margin-left:10pt;
 	background-color:white;
+	font-size:8pt;
+	color:black;
+	font-weight:bold;
 }
 .pimg{
 	width:50%;

@@ -1,0 +1,57 @@
+.txt{
+	margin-top:10px;
+}
+.tbox{
+	height:50px;
+}
+.slec{
+	height:50px;
+}
+
+#radio{
+	margin-top:0px;
+	margin-bottom:20px;
+}
+.pointone{
+	color:;
+	padding:6px;
+}
+.pointtwo{
+	padding:10px;
+	margin-bottom:10pt;
+}
+.txta{
+	resize:none;
+}
+.rox{
+	margin-top:15px;
+}
+.majorbody{
+	background-attachment:url("../");
+	background-repeat:repeat;
+	background-color:aqua;
+}
+.omotologo{
+	color:purple;
+}
+.iconstyle{
+	font-size:50pt;
+	margin-bottom:10pt;
+}
+.customcard{
+	margin-top:10pt;
+
+}
+.htx{
+	color:lightgray;
+}
+.htext{
+	margin-top:20pt;
+	margin-bottom:20pt;
+}
+.well{
+	border:1px solid lightgray;
+	margin-top:20pt;
+	padding:15px;
+	margin-bottom:30pt;
+}

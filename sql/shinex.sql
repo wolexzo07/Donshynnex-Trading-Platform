@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2024 at 05:51 AM
+-- Generation Time: Jun 18, 2024 at 07:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -210,6 +210,33 @@ INSERT INTO `createusers` (`id`, `fiat`, `btc_wallet`, `usdt_wallet`, `eth_walle
 (3, '', 0, 0, 0, 0, 0, 0, 0, '', 'Dotun Titus Oludotun', '08065751579', 'biobaku2017@gmail.com', '1474047fb00b2d8d95646f7436837ed03ccafca5f3b7006982d89818f9d52ae4', '', '', '', '486eea3ce68bf004bab6af20d89c1006b8452720c8c9711596c99ea0481ca1553840c732', 'Windows 7', '127.0.0.1', 'Firefox', '2020-12-18 12:46:11 pm', '0', '1'),
 (4, '', 0, 0, 0, 0, 0, 0, 0, '', 'Oku Samuel Ekpeyeong', '08091882277', 'samuel@gmail.com', '1474047fb00b2d8d95646f7436837ed03ccafca5f3b7006982d89818f9d52ae4', '', '', '', '70eed0153f322a5c022c5bcdef5a0dee8efab48dfa44af6ffd9f9f10a5154086f8ae83a7', 'Windows 7', '127.0.0.1', 'Firefox', '2020-12-18 09:51:35 pm', '0', '0'),
 (5, '', 0, 0, 0, 0, 0, 0, 0, '', 'Super Admin', '09061975683', 'admin@gmail.com', '1474047fb00b2d8d95646f7436837ed03ccafca5f3b7006982d89818f9d52ae4', '', '', '', '4aa2ca07aafb1c70c842969e288fa50ea56f55e3e92ed160a8ca708ab6a113efde552549', 'Windows 7', '127.0.0.1', 'Firefox', '2021-01-02 03:48:04 am', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fiat_crypto`
+--
+
+CREATE TABLE `fiat_crypto` (
+  `id` int(11) NOT NULL,
+  `type` enum('fiat','crypto') NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `symbol` varchar(100) NOT NULL,
+  `status` enum('0','1') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fiat_crypto`
+--
+
+INSERT INTO `fiat_crypto` (`id`, `type`, `name`, `symbol`, `status`) VALUES
+(1, 'fiat', 'NGN', 'naira_wallet', '1'),
+(2, 'fiat', 'GHS', 'cedis_wallet', '1'),
+(3, 'fiat', 'KSH', 'cephas_wallet', '1'),
+(4, 'fiat', 'USD', 'dollar_wallet', '0'),
+(5, 'crypto', 'BTC', 'btc_wallet', '1'),
+(6, 'crypto', 'ETH', 'eth_wallet', '1'),
+(7, 'crypto', 'USDT', 'usdt_wallet', '1');
 
 -- --------------------------------------------------------
 
@@ -548,6 +575,12 @@ ALTER TABLE `createusers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `fiat_crypto`
+--
+ALTER TABLE `fiat_crypto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `mediacontrol`
 --
 ALTER TABLE `mediacontrol`
@@ -634,6 +667,12 @@ ALTER TABLE `controlmailer`
 --
 ALTER TABLE `createusers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `fiat_crypto`
+--
+ALTER TABLE `fiat_crypto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mediacontrol`

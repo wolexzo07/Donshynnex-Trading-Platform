@@ -57,14 +57,19 @@ $(document).ready(function(e){
 	 
 	  // Process Registration Form |||| 1=enables timeout;0=disables timeout
 	   processAjaxForm("registerForm","Showresult","processRegistration","1");
+	   
 	  // Process Login Form
 	   processAjaxForm("loginForm","LoginResult","processLogin","1");
+	   
 	 // Process Selling of Bitcoin internally
-	   processAjaxForm("sellbtcnow","LoginResult","processBtcSelling","0");
+	   processAjaxForm("sellbtcnow","response-two","processBtcSelling","0");
+	   
 	   // Process Selling of Bitcoin from External wallet
-	   processAjaxForm("confirmBTC","LoginResult","processBtcExternal","0");
+	   processAjaxForm("confirmBTC","response-two","processBtcExternal","0");
+	   
 	   // Process Buying of Bitcoin internally 
-	   processAjaxForm("buybtcnow","LoginResult","processBtcBuying","0");
+	   processAjaxForm("buybtcnow","response-one","processBtcBuying","0");
+	   
 	   // Fetching approved transaction
 	   FetchPostContent("approvedTransaction","approvedTransaction","1");
 	   

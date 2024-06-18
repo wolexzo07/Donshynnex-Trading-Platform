@@ -8,7 +8,7 @@
 
 <form id="registerForm" method="POST" autocomplete="off">	
 
-<div class="form-group" style="margin-top:10pt;">
+<!----<div class="form-group" style="margin-top:10pt;">
 
 	<select name="fiat" class="form-control input-lg" required="">
 		<option value="">Choose Fiat currency</option>
@@ -18,7 +18,7 @@
 		<option value="USD">United State Dollar(USD)</option>
 	</select>
 
-</div>
+</div>--->
 
 
 <div class="form-group" style="margin-top:10pt;">

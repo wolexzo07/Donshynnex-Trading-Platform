@@ -1,8 +1,4 @@
-<?php 
-
-	include_once("param.php");
-
-?>
+<?php include_once("param.php");?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,9 +6,9 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all"/>
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="css/toastify.min.css"/>
         <link rel="stylesheet" href="css/style3.css" type="text/css" media="all"/>
 		<link rel="stylesheet" href="css/specialCustom.css" type="text/css" media="all"/>
 		<link rel="stylesheet" href="css/slider.css" type="text/css" media="all"/>
@@ -20,20 +16,21 @@
 		<link rel="stylesheet" href="css/more.css" type="text/css" media="all"/>
 		<link rel="stylesheet" href="css/wallets.css" type="text/css" media="all"/>
 		
+		<!--<script src="js/jquery-3.7.1.min.js"></script>-->
+		
 		<script src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/Toast.js"></script>
-		<script type="text/javascript" src="js/hook.js"></script>
+		<script src="js/toastify-js.js"></script>
+		
         <script type="text/javascript" src="js/online.js"></script>
 		<script src="js/clipboard.min.js"></script>
 		<script src="workitout.js"></script>	
-		
-		<style>
-
-		</style>
-
+		<script src="js/btcalone.js"></script>
+	
     </head>
 	
     <body>
+	
+	<?php //x_toasts("I am a winner");?>
 	
         <div class="wrapper">
 
@@ -73,11 +70,20 @@
 			
         </div>
 		
+		
+		
+		
 		<?php 
 		
-			if(sh_adminchecker($uid) == "0"){
+			if(sh_adminchecker($uid) == "0"){ // user access
 				
-				include_Once("menuExtra.php");
+				include_Once("Accountfunding.php"); // Account funding
+				
+				include_Once("BuyingAssets.php"); // Buying assets
+				
+				include_Once("SellingAssets.php"); // Selling Asset
+				
+				include_Once("menuExtra.php"); // User menu
 				
 			}
 			

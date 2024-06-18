@@ -1,23 +1,38 @@
 
 .dnone{
+	
 	display:none;
+	
 }
+
 .dblock{
+	
 	display:block;
+	
 }
 .rnone{
+	
 	resize:none;
+	
 }
+
 .color-b{
+	
 	color:black;
+	
 }
 .color-g{
+	
 	color:green;
+	
 }
+
 .color-p{
 	color:purple;
 }
+
 .x-round{border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;-o-border-radius:50%;-ms-border-radius:50%;}
+
 .x-shadow{box-shadow:2px 2px 3px 2px lightgray;-moz-box-shadow:2px 2px 3px 2px lightgray;-webkit-box-shadow:2px 2px 3px 2px lightgray;-o-box-shadow:2px 2px 3px 2px lightgray;-ms-box-shadow:2px 2px 3px 2px lightgray;}
 
 .ls-1{letter-spacing:1pt;}

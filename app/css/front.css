@@ -1,0 +1,33 @@
+*{
+	margin:0pt;
+	
+}
+body{
+	max-height:100%;
+	background:white;
+}
+.pager{
+	background:white;
+	opacity:0.9;
+}
+.container{
+width:100%;	
+height:100%;
+}
+.fLayer{
+	height:200px;
+	padding-bottom:30pt;
+}
+.sLayer {
+margin-top:0;
+}
+.thLayer {
+	
+}
+.justload{
+	margin-top:20px;
+	background:white;
+}
+
+
+
