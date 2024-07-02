@@ -5,40 +5,76 @@ include("../justlibrary/cryptabuyExtension.php");
 if(x_validatepost("etoken") && x_validatepost("wallet") && x_validatepost("amountinbtc") ){
 	
 	$userid = x_clean($_SESSION["TIMBOSS_CRYPTBUY_ID"]); // Getting User ID
-	$wallet = x_clean(x_post("wallet")); // Wallet type internal|external
-	$amtinbtc = x_clean(x_post("amountinbtc")); // Amount in Btc
+	$wallet = x_clean(x_post("wallet")); // currency Wallet type
+	$cwallet = x_clean(x_post("crypto")); // crypto Wallet type
+	$amtinbtc = x_clean(x_post("amountinbtc")); // Amount in crypto
 	$amtinusd = x_clean(x_post("amountinusd"));	// Amount in usd 
 	
+	// checking for user validation
+	
+	if(sh_validateuser($userid) == "0"){
+		
+		x_toasts("Invalid user detected!");
+		
+		exit();
+		
+	}
 	
 	// Validations started
 	
-	if($wallet == ""){echo "<p class='rtext'>Payment wallet missing</p>";exit();}
-	if($amtinbtc == "" || !is_numeric($amtinbtc)){echo "<p class='rtext'>Enter amount in BTC</p>";exit();}
+	if($wallet == ""){
+		
+		x_toasts("Fiat wallet is missing!");
+		
+		exit();
+		
+		}
+
+	if($cwallet == ""){
+		
+		x_toasts("Crypto asset is missing!");
+		
+		exit();
+		
+		}
+		
+		
+	if($amtinbtc == "" || !is_numeric($amtinbtc)){
+		
+		x_toasts("Crypto amount is missing!");
+		
+		exit();
+		
+		}
 	
-	//if($amtinusd == "" || !is_numeric($amtinusd)){echo "Enter amount in usd";exit();}
 	
 	// Validations ended
 	
-	$amtinusd = x_btc2usdnf($amtinbtc);	// Amount in usd recalculated
-	$sellrate = x_getrates("sell_rate"); // Getting Selling Rate
-	$amtinnaira = $amtinusd * $sellrate;	// Amount in naira Based on selling rate
-	$tranx_id = "CRBY".$userid.str_shuffle(DATE("YmdHis"));
+	$amtinusd = sh_getRatenCon($cwallet , $amtinbtc , "1");	// Amount in usd re-calculated
+	$sellrate = sh_walletCurrentRate($wallet , "" , "2"); // Get current sell Rate
+	$amtincurrency = sh_walletCurrentRate($wallet , $amtinusd , "4");	// dollar conversion to local currency
+
+	$tranx_id = sh_genTrxbyid($userid , "BY"); // generate transaction id
 	
-	$token = sha1($userid).md5($userid.uniqid());
+	$token = sha1($tranx_id).md5($tranx_id);
+	
 	$os = xos();$br = xbr();$ip = xip();$timer = x_curtime('0','1');
 	
-	$create = x_dbtab("buying_transactions","
+	$create = x_dbtab("btransactions","
 	user_id INT NOT NULL,
 	tranx_id VARCHAR(255) NOT NULL,
-	wallet_used ENUM('','NGN','USD') NOT NULL,
-	wallet_type ENUM('','internal','external') NOT NULL,
-	naira_usd_rate DOUBLE NOT NULL,
-	amount_in_btc DOUBLE NOT NULL,
+	tranx_type  ENUM('','NGN-BTC','NGN-ETH','NGN-USDT','GHS-BTC','GHS-ETH','GHS-USDT','KSH-BTC','KSH-ETH','KSH-USDT') NOT NULL,
+	wallet_used ENUM('','NGN','USD','KSH','GHS') NOT NULL,
+	crypto_used ENUM('','BTC','ETH','USDT') NOT NULL,
+	rate_used DOUBLE NOT NULL,
+	amount_in_crypto DOUBLE NOT NULL,
 	amount_in_usd DOUBLE NOT NULL,
-	amount_in_naira DOUBLE NOT NULL,
-	btc_wallet_balance DOUBLE NOT NULL,
-	naira_wallet_balance DOUBLE NOT NULL,
-	btc_recieve_status ENUM('0','1','2') NOT NULL,
+	amount_in_currency DOUBLE NOT NULL,
+	crypto_balance_before DOUBLE NOT NULL,
+	crypto_balance_after DOUBLE NOT NULL,
+	currency_balance_before DOUBLE NOT NULL,
+	currency_balance_after DOUBLE NOT NULL,
+	status ENUM('0','1','2') NOT NULL,
 	os VARCHAR(50) NOT NULL,
 	br VARCHAR(50) NOT NULL,
 	ip VARCHAR(30) NOT NULL,
@@ -47,61 +83,47 @@ if(x_validatepost("etoken") && x_validatepost("wallet") && x_validatepost("amoun
 	
 	
 	if($create){
-	
-	// Validating duplicate transaction
-	 if(x_count("buying_transactions","tranx_id='$tranx_id' LIMIT 1") > 0){
-		 x_print("<p class='rtext'>Transaction <b>$tranx_id</b> already exit</p>");
-	 }else{
-		if($wallet == "internal"){
-			$btc_balance = x_getbalance("btc_wallet",$userid); // Getting BTC Balance
-			$ngn_balance = x_getbalance("naira_wallet",$userid); // Getting NGN Balance
+		
+		if(x_count("btransactions","tranx_id='$tranx_id' LIMIT 1") > 0){ // checking for duplicate transaction
 			
-			// Validating the balance in the user naira wallet
+			x_toasts("Transaction id exists!");
 			
-			if($amtinnaira > $ngn_balance){
-				x_print("<p class='rtext'>Insufficient Naira Balance</p>");
-			}else{
-				
-	// Inserting Record into the database
-	
-	$new_btc_balance = round(($btc_balance + $amtinbtc),8) ; // Btc New Balance
-	$new_naira_balance = round(($ngn_balance - $amtinnaira),2) ; // NGN New Balance
-	
-	// Updating user btc wallet balance
-	
-	x_update("createusers","id='$userid'","naira_wallet='$new_naira_balance',btc_wallet='$new_btc_balance'","","Failed to update");
-	
-	// Inserting transaction details into the database
-	$f_amtinusd = "USD ".number_format($amtinusd,2); // formatted amount in usd
-	$f_amtinnaira = "NGN ".number_format($amtinnaira,2); // formatted amount in ngn
-	$f_ngnbalance = "NGN ".number_format($new_naira_balance,2); // formatted amt in ngn
-	
-	$sellrate_f = "NGN ".number_format($sellrate,2)." / USD";
-	
-	x_insert("naira_wallet_balance,naira_usd_rate,wallet_used,btc_wallet_balance,user_id,tranx_id,wallet_type,amount_in_btc,amount_in_usd,amount_in_naira,btc_recieve_status,os,br,ip,date_time","buying_transactions","'$new_naira_balance','$sellrate','NGN','$new_btc_balance','$userid','$tranx_id','$wallet','$amtinbtc','$amtinusd','$amtinnaira','1','$os','$br','$ip','$timer'","<p class='rtext'>Transaction created! Details Below:</p><table class='table table-hover table-bordered'><tr><td>Amount (BTC)</td><th>$amtinbtc BTC</th></tr><tr><td>Amount (USD)</td><th>$f_amtinusd</th></tr><tr><td>Amount (NGN)</td><th>$f_amtinnaira</th></tr><tr><td>Buy Rate</td><th>$sellrate_f</th></tr><tr><td>Status</td><th><font style='color:purple;'><i class='fa fa-check-circle'></i>&nbsp; Approved</font></th></tr><tr><td>Tranx id</td><th><font style='color:purple;'>$tranx_id</font></th></tr></table>","<p class='rtext'>Failed to create transaction</p>");
-	
-	// Insert another copy of this transaction into all transaction table
-	$tim = x_curtime(0,0);
-	x_insert("tranx_id,user_id,wallet_type,type,amount,wallet_balance_after,status,token,os,ip,br,date_time,time_stamp","transaction","'$tranx_id','$userid','btc','buybtc','$amtinbtc','$new_btc_balance','1','$token','$os','$ip','$br','$timer','$tim'","&nbsp;","<p class='rtext'>Failed to create transaction copy</p>");
-	
-	//insert into nofication system
-	
-	}
+			exit();
 			
-		}elseif($wallet == "external"){
-			
-		}else{
-			x_print("Invalid wallet detected");
 		}
-	 }
-	
-	
+		
+		$getCurrentBalance = sh_getFiatBalancebyUid("$wallet" , "$userid");
+		
+		if($amtincurrency > $getCurrentBalance){ // checking for balance sufficiency
+			
+			x_toasts("Insufficient wallet balance!");
+			
+			exit();
+			
+		}
+		
+		$nbalanceLocal = round($getCurrentBalance - $amtincurrency,2); $status = "0"; $tranx_type = $wallet."-".$cwallet;
+		
+		$crypto_balance_before = sh_getFiatBalancebyUid("$cwallet" , "$userid");
+
+		$crypto_balance_after = $crypto_balance_before + $amtinbtc;
+
+		
+		// updating user wallet
+		
+		$db_wallet = sh_getCryptoFiatdb("$wallet"); $db_cwallet = sh_getCryptoFiatdb("$cwallet");
+		
+		x_updated("createusers","id='$userid'","$db_wallet=$nbalanceLocal , $db_cwallet=$crypto_balance_after","<script>showalert('Wallet credited successfully!');</script>","<script>showalert('Failed to credit wallet');</script>");
+		
+		// updating user wallet
+		
+		x_insert("user_id , tranx_id , tranx_type , wallet_used , crypto_used , rate_used , amount_in_crypto , amount_in_usd , amount_in_currency , crypto_balance_before , crypto_balance_after , currency_balance_before , currency_balance_after , status , os , br , ip , date_time","btransactions","'$userid' , '$tranx_id' , '$tranx_type' , '$wallet' , '$cwallet' , '$sellrate' , '$amtinbtc' , '$amtinusd' , '$amtincurrency' , '$crypto_balance_before' , '$crypto_balance_after' , '$getCurrentBalance' , '$nbalanceLocal' , '$status' , '$os' , '$br' , '$ip' , '$timer'","<script>showalert('Transaction processed successfully!');</script>","<script>showalert('Failed to process transaction');</script>");
+		
 	}else{
+		
 		x_print("Failed to create table!");
+		
 	}
 	
 	
-}
-	
-	
-	?>
+}?>

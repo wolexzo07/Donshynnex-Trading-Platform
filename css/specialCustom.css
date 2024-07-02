@@ -1,18 +1,33 @@
 
-.dnone{
+.f-loader {
+	
+	border:1px solid lightgray;
+	padding:20px;
+	
+}
+
+.f-bold {font-weight:bold;}
+
+.dnone , .d-none{
 	
 	display:none;
 	
 }
 
-.dblock{
+.dblock , .d-block{
 	
 	display:block;
 	
 }
-.rnone{
+.rnone , .r-none{
 	
 	resize:none;
+	
+}
+
+.color-w{
+	
+	color:white;
 	
 }
 
@@ -68,6 +83,12 @@
 .ft-13{font-size:13pt;}
 .ft-14{font-size:14pt;}
 .ft-15{font-size:15pt;}
+.ft-16{font-size:16pt;}
+.ft-17{font-size:17pt;}
+.ft-18{font-size:18pt;}
+.ft-19{font-size:19pt;}
+.ft-20{font-size:20pt;}
+.ft-21{font-size:21pt;}
 
 .m-1{margin:10pt;}
 .m-2{margin:20pt;}

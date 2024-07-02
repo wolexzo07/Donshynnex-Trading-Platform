@@ -20,6 +20,16 @@
 		
 		<script src="js/jquery.js"></script>
 		<script src="js/toastify-js.js"></script>
+		<script src="js/indexController.js"></script>
+
+		<?php
+			if(sh_adminchecker($uid) == "1"){ // admin access
+			?>
+		<script src="dtable/datatables.min.js"></script>
+		<link rel="stylesheet" href="dtable/datatables.min.css"/>
+			<?php	
+			}
+		?>
 		
         <script type="text/javascript" src="js/online.js"></script>
 		<script src="js/clipboard.min.js"></script>
@@ -29,8 +39,6 @@
     </head>
 	
     <body>
-	
-	<?php //x_toasts("I am a winner");?>
 	
         <div class="wrapper">
 

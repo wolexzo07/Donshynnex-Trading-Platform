@@ -37,7 +37,7 @@
 </script>
 		
 		<div class="carousel-cu">
-			<button id="prevButton-cu">&#10094;</button>
+			<button class="slideBtn" id="prevButton-cu">&#10094;</button>
 			<div class="carousel-cu-inner">
 
 				<div class="carousel-cu-item" id="item1">
@@ -94,5 +94,5 @@
 				
 				</div>
 			</div>
-			<button id="nextButton-cu">&#10095;</button>
+			<button class="slideBtn" id="nextButton-cu">&#10095;</button>
 		</div>

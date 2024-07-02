@@ -7,6 +7,8 @@
 				<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
 				
 					<h4><i class="fa fa-arrow-left close-funding"></i> &nbsp;&nbsp;FIAT <span class="color-p"></span>FUNDING</h4>
+					
+					<?php include_once("top-up.php");?>
 				
 				</div>
 				<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>

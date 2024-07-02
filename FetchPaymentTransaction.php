@@ -6,138 +6,121 @@ include("validate_owner.php"); // Authenticating super user
 
 if(x_validatemethod("POST")){
 	
-	if(x_count("transaction","wallet_type='ngn' AND type='topup' AND topup_type='offline' OR wallet_type='ngn' AND type='topup' AND topup_type='online' LIMIT 1") > 0){
+	if(x_count("transaction","status = '0'") > 0){
+		
+		$counter = 0;
+		
 		?>
-	
+		
+		<div class="response-trx"></div>
+		
+		<table class="table" id="table_id">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Photo/Name</th>
+						<th>Crypto Balance</th>
+						<th>Fiat Balance</th>
+						<th>Contact Details</th>
+						<th>Topup amount</th>
+						
+						<th>Action</th>
+					</tr>
+				</thead>
+			<tbody>
 		<?php
-		foreach(x_select("0","transaction","wallet_type='ngn' AND type='topup' AND topup_type='offline' OR wallet_type='ngn' AND type='topup' AND topup_type='online'","500","id desc") as $key){
-			$id = $key["id"];
-			$tid = $key["tranx_id"];
-			$uid = $key["user_id"];
-			$wallet_type = $key["wallet_type"];
-			$type = $key["type"];
-			$toptype = $key["topup_type"];
-			$amount = $key["amount"];
-			$wba = $key["wallet_balance_after"];
-			$status = $key["status"];
-			$dt = $key["date_time"];
-			$token = $key["token"];
+		foreach(x_select("0","transaction","status = '0'","500","id desc") as $key){
+			
+			$counter++;
+			
+			$id = $key["id"]; $tid = $key["tranx_id"]; $uid = $key["user_id"]; $wallet_type = $key["wallet_type"];
+			
+			$type = $key["type"]; $toptype = $key["topup_type"]; $amount = $key["amount"];$wba = $key["wallet_balance_after"];
+			
+			$wbf = $key["balance_before"]; $status = $key["status"]; $dt = $key["date_time"]; $token = $key["token"];
 			
 			// Getting user details
-			$name = x_getsingle("SELECT name FROM createusers WHERE id='$uid' LIMIT 1","createusers WHERE id='$uid' LIMIT 1","name");
 			
-			$ngn_wallet = x_getsingle("SELECT naira_wallet FROM createusers WHERE id='$uid' LIMIT 1","createusers WHERE id='$uid' LIMIT 1","naira_wallet");
+			$walletType = fiatSwitches($wallet_type);
+
+			foreach(x_select("mobile,email,name,photo_path,$walletType","createusers","id='$uid'","1","id") as $data){
 			
-			$path = x_getsingle("SELECT photo_path FROM createusers WHERE id='$uid' LIMIT 1","createusers WHERE id='$uid' LIMIT 1","photo_path");
-			
-			$email = x_getsingle("SELECT email FROM createusers WHERE id='$uid' LIMIT 1","createusers WHERE id='$uid' LIMIT 1","email");
-			
-			$mobile = x_getsingle("SELECT mobile FROM createusers WHERE id='$uid' LIMIT 1","createusers WHERE id='$uid' LIMIT 1","mobile");
-			
-			
-			?>
-			<ul class="list-group mt-3 mb-3">
-			
-				<li class="list-group-item strip">
+				$name = $data["name"]; $wallet = $data["$walletType"]; $path = $data["photo_path"]; $email = $data["email"];
 				
-				<img src="<?php
-				if($path == ""){
-					echo "img/avatar.png";
-				}else{
-					if(file_exists($path)){
-						echo $path;
-					}else{
-						echo "img/avatar.png";
-					}
-				}
-				?>" class="userprofileR"/>
-				<span style="background:white;color:black;border:1px solid gray;" class="badge"><?php echo $toptype;?></span>
-				<?php
-					if($status == "0"){
-						?>
-					<span style="background-color:green;color:white;" class="pull-right badge">Pending</span>
-					<?php
-					}elseif($status == "1"){
-						?>
-					<span style="background-color:green;color:white;" class="pull-right badge">Approved</span>
-					<?php
-					}elseif($status == "2"){
-						?>
-					<span style="background-color:green;color:white;" class="pull-right badge">Cancelled</span>
-					<?php
-					}else{
-						
-					}
-				?></li>
-				
-				<li class="list-group-item pb-2">
-				<font style='font-weight:none;'><?php echo $name;?></font> Paid <b><?php echo "NGN ".number_format($amount,2);?></b> on <?php echo $dt;?> 
-				<?php
-				if($status == "0"){
-					?>
-					<br/><br/>
-					  <span id="appr<?php echo $id;?>" type="button" class="btn btn-sm btn-default"><i class="fa fa-check-circle"></i> Approve</span>
-					  
-					  <span id="canc<?php echo $id;?>" type="button" class="btn btn-sm btn-danger"><i class="fa fa-close"></i> Cancel</span>	
-						
-					<script>
-					$(document).ready(function(e){
-			function FetchPostContent(resultid,processingScript,switchdisplay){
-			if(switchdisplay == "1"){
-				$("#"+resultid).show();
-				$("#"+resultid+"1").show();
-				$("#"+resultid+"1").fadeIn(400).html("<img class='img-circle' src='img/ajax-loader.gif'/> wait....");
+				$mobile = $data["mobile"];
+			
 			}
-					 var dataString = "";
-					 $.ajax({
-						   type: "GET",
-						   url: processingScript,
-						   data: dataString,
-						   cache: false,
-						   success: function(result){
-							$("#"+resultid).html(result);
-							$("#"+resultid+"1").hide();
-							$("#appr<?php echo $id;?>").hide();
-							$("#canc<?php echo $id;?>").hide();
-							setTimeout(function(){
-								$("#"+resultid).hide();
-							},10000);
-						   }
-					  });
-				}
+		
+			?>
+			
+				<tr>
+				<td><?php echo $counter;?></td>
 				
-						$("#appr<?php echo $id;?>").click(function(){
-							FetchPostContent("restnow<?php echo $id;?>","Process_Approved?token=<?php echo $token;?>&tid=<?php echo $id;?>","1");
-						});
-						$("#canc<?php echo $id;?>").click(function(){
-							FetchPostContent("restnow<?php echo $id;?>","Process_Cancelled?token=<?php echo $token;?>&tid=<?php echo $id;?>","1");
-						});
-					});
-					</script>
-					
+				<td><img src="<?php echo x_validatepath($path , 'img/avatar.png');?>" class="img-icon"/> &nbsp;<?php echo $name;?></td>
 				
-					<p style="color:green;padding-top:5px;" id="restnow<?php echo $id;?>1"></p>
-					<p style="color:green;padding-top:5px;" id="restnow<?php echo $id;?>"></p>
-					
+				<td>
 					<?php
-				}
-				?>
+					
+						$listCurrency = ["btc_wallet","usdt_wallet","eth_wallet"];
 						
-				</li>
-				<li style="font-size:9pt;display:none;" class="list-group-item strip"><?php echo $tid;?></li>
+						foreach($listCurrency as $ftm){
+							$split = explode("_",$ftm);
+							$sy = strtoupper($split[0]);
+							echo number_format(x_getbalance($ftm , $uid),5)." $sy"."<br/>";	
+						}
+					?>
+				</td>
+
+				<td>
+					<?php
+					
+						$listCurrency = ["NGN","GHS","KSH"];
+						
+						foreach($listCurrency as $ftm){
+							
+							echo $ftm." ".number_format(sh_getFiatBalancebyUid($ftm , $uid),2)."<br/>";
+							
+						}
+					?>
+				</td>
 				
-				<!--<li class="list-group-item strip">
-				</li>
-				<li class="list-group-item"></li>-->
+				<td><?php echo $email;?><br/><?php echo $mobile;?></td>
+
+				<td><b><?php echo $wallet_type ." ".number_format($amount,2);?></b>
 				
+					<br/>
+					<span style="background:white;color:black;border:1px solid gray;font-size:6pt;" class="badge"><?php echo $toptype;?></span>
+					
+					<span style="background-color:green;color:white;font-size:6pt;" class="badge">	<?php echo statusSwch($status);?></span>
 				
-				<li style="display:none;" class="list-group-item strip">
-				<b><?php echo "NGN ".number_format($ngn_wallet,2);?></b> (Current Balance)</li>
+				</td>
+				<td>
+				<?php
 				
+					if($status == "0"){
+						
+						?>
+						  <span onclick='x_fetchpro(".response-trx","appr-ptranx","<?php echo $tid.'-'.$token;?>")' type="button" class="btn btn-sm btn-default"><i class="fa fa-check-circle"></i> Approve</span>
+						  
+						  <span onclick='x_fetchpro(".response-trx","cancel-ptranx","<?php echo $tid.'-'.$token;?>")' type="button" class="btn btn-sm btn-danger"><i class="fa fa-close"></i> Cancel</span>
+						
+						<?php
+					}
 				
-			</ul>
+				?>
+				</td>
+			</tr>
+			
 			<?php
 		}
+		
+		?>
+		
+		</tbody></table>
+		
+		
+		
+		<?php
 		
 	}else{
 		x_print("<ul class='list-group'><li class='list-group-item'><p class='text-center'><i style='color:lightgray;font-size:50pt;' class='fa fa-credit-card mt-2'></i><br/><br/>No payments found<p></li></ul>");
@@ -146,7 +129,19 @@ if(x_validatemethod("POST")){
 }
 ?>
 <style>
-.strip{background-color:white;
-color:black;
-font-weight:none;}
+.strip{background-color:white;color:black;font-weight:none;}
+.img-icon {width:30px;border-radius:500px;}
 </style>
+
+<script>
+	$(document).ready( function () {
+		$('#table_id').DataTable({
+			lengthMenu: [
+				[10, 25, 50, 100, -1],
+				[10, 25, 50, 100, 'All'],
+			],
+		});
+		$("#table_id_filter input").attr("placeholder","Search Anything");
+		$("#table_id_filter input").attr("class","form-control form-control-sm");
+	});
+</script>

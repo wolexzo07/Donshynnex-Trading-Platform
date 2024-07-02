@@ -4,7 +4,7 @@
 		
 ?>
 	
-<script src="workitout.js"></script>
+<!---<script src="workitout.js"></script>--->
 
 <div class="row">
 	

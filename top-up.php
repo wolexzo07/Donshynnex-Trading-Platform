@@ -1,161 +1,124 @@
-<?php 
-session_start();
-include("../justlibrary/finishit.php");
-include("../justlibrary/cryptabuyExtension.php");
-?>
 <div class="row">
 						
-	<div class="col-md-12">
-	
-		<div class="row">			
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				<h4 style="display:none;" class="headerText"><i class="fa fa-money"></i>&nbsp;&nbsp; FUND <font style="color:purple;">WALLET</font></h4>
+	<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+	<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+		
+			<h4 style="display:none;" class="headerText"><i class="fa fa-money"></i>&nbsp;&nbsp; FUND <font style="color:purple;">WALLET</font></h4>
+			
+			<ul class="list-group mt-2">
 				
-				<ul class="list-group mt-2">
-					<li class="list-group-item">
-					<center><img src="img/icon/wallet-top.png" class="avatar"/></center>
+				<li style="border:;" class="list-group-item">
 					
-					</li>
-					<li class="list-group-item">
-					<script src="workitout.js"></script>
+					<!---<center><img src="img/icon/wallet-top.png" class="avatar"/></center>--->
 					
-						<div style="display:none;" class="payoffine">
-						
-						<div id="LoginResult"></div>
-						
-						<form id="makepaymentoffline" autocomplete="off">
-						
-						<div class="mt-1 mb-1 text-right">
-							<button class="btn btn-sm btn-default"><i class="fa fa-send"></i> &nbsp;&nbsp;I have paid</button>
-						</div>
-						
-						<p class="mt-1">Alert us through this form after making transfer to the account provided below and your wallet will be credited once payment is verified:</p>
-						<p class="textStyler">Amount Tranferred:</p>
-						<div class="form-group mt-1">
-							<div class="input-group">
-							<span class="input-group-addon">NGN</span>
-								<input type="number" style="height:45px;" autocomplete="off" required="required" name="amount" id="amount" class="form-control" min="1000" max="" placeholder="Enter amount" />
-							</div>
-						</div>
-						<p class="textStyler">Transaction Date:</p>
-						<div class="form-group mt-1">
-						
-							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								<input type="date" style="height:45px;" autocomplete="off" required="required" name="date" id="date" class="form-control" placeholder="Transaction Date" />
-							</div>
-						</div>
-						
-						<p class="textStyler">I tranferred from (yours):</p>
-						<div class="form-group mt-1">
-
-							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-bank"></i></span>
-								<?php
-								if(x_count("nigeriabanklisting","status='1' LIMIT 1") > 0){
-									?><select style="height:45px;" name="yourbank" class="form-control"><?php
-									foreach(x_select("banks","nigeriabanklisting","status='1'","30","banks") as $bank){
-										$banks = $bank["banks"];
-										?>
-										<option value="<?php echo $banks;?>"><?php echo $banks;?></option>
-										<?php
-									}
-									?></select><?php
-								}else{
-									?>
-									<option value="">No bank found</option>
-									<?php
-								}
-								?>
-							</div>
-						</div>
-						
-					<p class="textStyler">Name on account used:</p>
-						<div class="form-group mt-1">
-							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-								<input type="text" style="height:45px;" autocomplete="off" required="required" name="nameonacct" id="nameonacct" class="form-control" min="1000" max="" placeholder="Name on account" />
-							</div>
-						</div>
-						
-						<p class="textStyler">I tranferred to (company):</p>
-						<div class="form-group mt-1">
-
-							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-bank"></i></span>
-								<?php
-								if(x_count("adminbanklist","status='1' AND type='bankwallet' LIMIT 1") > 0){
-									?><select style="height:45px;" name="ourbank" class="form-control"><?php
-									foreach(x_select("bank_name,acct_name,acct_numb","adminbanklist","status='1' AND type='bankwallet'","5","id") as $bank){
-										$bn = $bank["bank_name"];
-										$acn = $bank["acct_name"];
-										$acnumb = $bank["acct_numb"];
-										?>
-										<option value="<?php echo $bn;?>"><?php echo $bn." ($acnumb) - ".$acn;?></option>
-										<?php
-									}
-									?></select><?php
-								}else{
-									?>
-									<option value="">No bank found</option>
-									<?php
-								}
-								?>
-							</div>
-						</div>
-						
-						<p class="textStyler">Note (optional):</p>
-						<textarea style="resize:none;" name="note" placeholder="Enter Note" class="form-control"></textarea>
-						<input type="hidden" name="etoken" value="<?php echo sha1(uniqid());?>"/>
-						</form>
-						<?php
-							if(x_count("adminbank","status='1' LIMIT 1") > 0){
-								?><table style="font-size:8pt;text-transform:;" class="mt-1 table"><?php
-								foreach(x_select("0","adminbank","status='1'","1","id") as $bank){
-									$bn = $bank["bank_name"];
-									$an = $bank["acct_name"];
-									$anb = $bank["acct_numb"];
-									$btc_addr = $bank["btc_addr"];
-									?>
-									<tr><th>Bank Name</th><td><?php echo $bn;?></td></tr>
-									<tr><th>Account Name</th><td><?php echo $an;?></td></tr>
-									<tr><th>Account Number</th><td><?php echo $anb;?></td></tr>
-									<?php
-								}
-								?></table><?php
-								
-							}
-						?>
-						
-							
-							
-						</div>
-						
-					<div class="btn-group btn-group-sm">
-					  <span onclick="load('pay-online')" type="button" class="btn btn-primary"><i class="fa fa-credit-card"></i> &nbsp;&nbsp;Pay Online</span>
-					  <span type="button" id="payoff" class="btn btn-success"><i class="fa fa-money"></i> &nbsp;&nbsp;Pay Offline</span>	
+					<?php include("alertadmin.php");?>
+				
+					<div class="listButton">
+					
+					  <span disabled type="button" class="btn btn-primary w-100 mt-3 pt-1 pb-1"><i class="fa fa-credit-card"></i> &nbsp;&nbsp;Online Funding</span>
+					  
+					  <span type="button" id="offline-shot" class="btn btn-success w-100 mt-2 mb-3 pt-1 pb-1"><i class="fa fa-bank"></i> &nbsp;&nbsp;Offline Funding</span>
+					  
 					</div>
+				
+				<script>
+				$(document).ready(function(){
 					
-					<script>
-					$(document).ready(function(){
-						$("#payoff").click(function(){
-							$(".payoffine").toggle();
-						});
+					$("#payoff").click(function(){
+						
+						let getFiatv = $("#fiat-typ").val();
+						let amountTp = $("#amount-topup").val();
+						
+						$(".payoffine").show();
+						
+						$(".NGN-account").hide(300);
+						$(".GHS-account").hide(300);
+						$(".KSH-account").hide(300);
+						$(".n-money").hide(300);
+						$(".funding-box").hide(300);
+						
+						$(".current-fiat").text(getFiatv);
+						$(".amount-in-fia").val(amountTp);
+						$("#fiat-val").val(getFiatv);
+						//$(".amount-in-fia").attrib("readonly","readonly");
+						
 					});
-					</script>
 					
-					</li>
+					$("#offline-shot").click(function(){
+						
+						$(".funding-box").show();
+						
+						$(".listButton").hide();
 				
-				</ul>
+					});
+				});
 				
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
-		</div>
-				
-	</div>
-	
+				function currencyChange(str){
+					
+					let amountTopup = $("#amount-topup").val();
+					
+					let famount = new Intl.NumberFormat().format(amountTopup);
+					
+					if(isNaN(amountTopup) || amountTopup == ""){
 
+						$(".response-click").html("<div style='margin:0pt' class='alert alert-warning n-money' role='alert'>Enter top-up amount</div>");
+						
+						$(".response-click").show(300 , function(){
+							
+							//clearTimeout(timOut);
+							
+							const timOut = setTimeout(function(){
+								
+								$(".response-click").hide(300);
+								
+							},3000);
+							
+						});
+						
+						return false;
+					}
+					
+					if(str == "NGN"){
+						$(".NGN-account").show(300);
+						$(".GHS-account").hide(300);
+						$(".KSH-account").hide(300);
+						$(".n-money").show(300);
+						$(".amount-computed").text(famount+" "+str);
+					}
+
+					if(str == "GHS"){
+						$(".NGN-account").hide(300);
+						$(".GHS-account").show(300);
+						$(".KSH-account").hide();
+						$(".n-money").show(300);
+						$(".amount-computed").text(famount+" "+str);
+					}
+
+					if(str == "KSH"){
+						$(".NGN-account").hide(300);
+						$(".GHS-account").hide(300);
+						$(".KSH-account").show(300);
+						$(".n-money").show(300);
+						$(".amount-computed").text(famount+" "+str);
+					}
+					
+					if(str == ""){
+						$(".NGN-account").hide(300);
+						$(".GHS-account").hide(300);
+						$(".KSH-account").hide(300);
+						$(".n-money").hide(300);
+					}
+					
+				}
+				
+				</script>
+				
+				</li>
+			
+			</ul>
+					
+	</div>
+	<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
 							
 </div>
 		
