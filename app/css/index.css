@@ -1,0 +1,30 @@
+body{
+	background-color:#00BFFF;
+}
+
+.clon{
+	width:100px;
+	margin-top:20px;
+}
+.tio{
+	margin-bottom:20pt;
+	margin-top:25pt;
+}
+.registerPanel{
+	height:100%;
+	overflow:hidden;
+	margin-top:20%;
+	background:white;
+	opacity:1;
+	padding-bottom:40pt;
+	padding-left:0pt;
+	padding-right:0pt;
+	padding-top:20pt;
+	display:;
+	border-radius:10pt;
+	-moz-border-radius:10pt;
+	-o-border-radius:10pt;
+	-webkit-border-radius:10pt;
+	-ms-border-radius:10pt;
+}
+	

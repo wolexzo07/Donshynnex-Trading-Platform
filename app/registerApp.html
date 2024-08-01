@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>YungoPay - Membership</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+        <link rel="stylesheet" href="mainlib/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="mainlib/css/toastify.min.css"/>
+        <link rel="stylesheet" href="mainlib/css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="mainlib/css/custom.css"/>
+		<link rel="shortcut icon" href="img/favico.png" type="image/x-icon"/>
+		
+		<script src="mainlib/js/jquery.js"></script>
+		<script src="mainlib/js/toastify-js.js"></script>
+		<script type="text/javascript" src="mainlib/js/online.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+
+    </head>
+    <body class="bold">
+
+	<div class="container">
+	
+			<div class="row">
+			
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
+					
+					<div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 bai">
+					
+					<!---------------Login panel starts here---------------------->
+
+						<div class="loginPanel">
+
+							<form id="loginForm" method="POST" autocomplete="off">
+
+									<center>
+										<img src="mainlib/img/cryptlogo.png" class="img-responsive clon"/>
+									</center>
+										
+								   <div class="form-group" style="margin-top:10pt;">
+									<div class="input-group date">
+									<span class="input-group-addon">
+									<span class="fa fa-user"></span>
+									</span>
+										<input type="text" autocomplete="off" required="required" name="userlogin" id="email" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter email | Mobile" />
+									</div>
+									</div>
+
+									<div class="form-group" style="margin-top:10pt;">
+									<div class="input-group date">
+									<span class="input-group-addon">
+									<span class="fa fa-lock"></span>
+									</span>
+										<input type="password" autocomplete="off" required="required" name="userpass" id="passkey" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter password" />
+									</div>
+									</div>
+									<input type="hidden" value="" class="etoken" name="etoken"/>
+
+									<div class="form-group" style="margin-top:10pt;">
+									<div class="input-group date">
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-log-in"></span>
+									</span>
+										<!---<input type="submit" value="Login" type="button" class="btn btn-primary btu" />--->
+										<button class="btn btn-primary btu" type="submit">Login</button>
+									</div>
+									</div>
+								
+								</form>
+								
+								<div id="Login-response"></div>
+								
+								<div class="btn-group pull-right tio">
+								
+									<button  id="RegBtn" class="btn btn-primary RegBtn pageu" type="submit"><i class="fa fa-users"></i>&nbsp; Register </button>
+									
+									<button id="LostBtn" class="btn btn-danger LostBtn pageu" type="submit"><i class="fa fa-key"></i>&nbsp; Lost Password</button>
+								
+								</div>
+
+						</div>
+						
+						<!---------------Login panel ends here---------------------->
+						
+						<!---------------Password Reset panel starts here---------------------->
+						
+						<div class="resetPanel">
+						
+						<form id="resetForm" method="POST" autocomplete="off">
+						
+							<center><img src="mainlib/img/cryptlogo.png" class="img-responsive clon"/></center>
+								
+							<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-key"></span>
+								</span>
+								<select class="form-control ema" required="required" name="pro" id="opt">
+								<!---<option value="">choose what to reset?</option>
+								<option value="pin">Pin Reset</option>--->
+								<option value="pass">Password Reset</option>
+
+								</select>
+								</div>
+							</div>	
+
+							<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-inbox"></span>
+								</span>
+									<input type="email" autocomplete="off" required="required" name="cust" id="email" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter valid email"  />
+								</div>
+							</div>
+
+							<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-key"></span>
+								</span>
+									<input type="submit" value="Reset" type="button" class="btn btn-danger btu" />
+								</div>
+							</div>
+							
+						</form>
+						
+						<div id="Reset-response"></div>
+
+						<div class="btn-group pull-right tio">
+							<button id="RegBtn" class="btn btn-primary RegBtn pageu" type="submit"><i class="fa fa-users"></i>&nbsp; Register </button>
+							<button id="LogBtn" class="btn btn-danger LogBtn pageu" type="submit"><i class="glyphicon glyphicon-log-in"></i>&nbsp; Login</button>
+						</div>
+					
+				</div>
+
+<!---------------Password Reset panel ends here---------------------->
+
+<!---------------Register panel starts here---------------------->
+
+				<div class="registerPanel">
+
+					<center><img src="mainlib/img/cryptlogo.png" class="img-responsive clon"/></center>
+					
+					<p class="" style="font-size:10pt;margin-top:10pt;text-transform:uppercase;display:none;"><font style="color:green;font-weight:bold;">NOTE :</font> All fields are required</p>
+					
+					<div class="regboss">
+
+						<form id="registerForm" method="POST" autocomplete="off">	
+
+								<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-user"></span>
+								</span>
+									<input type="text" autocomplete="off" required="required" name="name" id="name" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter Fullname" />
+								</div>
+								</div>
+
+								<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-inbox"></span>
+								</span>
+									<input type="email" autocomplete="off" required="required" name="email" id="email" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter valid email" />
+								</div>
+								</div>
+
+								<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-lock"></span>
+								</span>
+									<input type="password" autocomplete="off" required="required" name="passkey" id="passkey" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter password" />
+								</div>
+								</div>
+
+								<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-calculator"></span>
+								</span>
+									<input type="number" autocomplete="off" maxlength="11" required="required" name="mobile" id="mobile" value="" class="form-control ema" style="margin-top:0pt;" placeholder="Enter valid mobile" />
+								</div>
+								</div>
+								<input type="hidden" value="" class="etoken" name="etoken"/>
+
+								<div class="form-group" style="margin-top:10pt;">
+								<div class="input-group date">
+								<span class="input-group-addon">
+								<span class="fa fa-send"></span>
+								</span>
+									
+									<button class="btn btn-primary btu" type="submit">Register</button>
+
+								</div>
+								</div>
+							
+							</form>
+							
+							<div id="register-response"></div>
+							
+							<div class="btn-group pull-right tio">
+								<button id="LogBtn" class="btn btn-primary LogBtn pageu" type="submit"><i class="glyphicon glyphicon-log-in"></i>&nbsp; Login </button>
+								<button id="LostBtn" class="btn btn-danger LostBtn pageu" type="submit"><i class="fa fa-key"></i>&nbsp; Lost Password</button>
+							</div>
+							
+					</div>
+
+				</div>
+
+<!---------------Register panel ends here---------------------->
+
+					</div>
+					
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
+			
+			</div>
+	
+	</div>
+
+        <script src="mainlib/js/bootstrap.min.js"></script>
+        <script src="extrajs/device-uuid.min.js"></script>
+        <script src="extrajs/md5.min.js"></script>
+        <script src="extrajs/sha1.min.js"></script>
+		
+		<!---<script type="text/javascript" src="extra.js"></script>
+		<script type="text/javascript" src="workitout.js"></script>-->
+
+        <script src="quick.js" type="text/javascript"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

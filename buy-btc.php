@@ -1,4 +1,4 @@
-<?php ?>
+
 <div class="row">
 						
 	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
@@ -73,7 +73,7 @@
 											
 												<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
 												
-												<select required="" style="height:45px;" name="crypto" class="form-control">
+												<select required="" style="height:45px;" name="crypto" class="form-control byasset">
 													
 													<?php
 														if(x_count("fiat_crypto","type='crypto' AND status='1'") > 0){
@@ -118,9 +118,11 @@
 										<div class="form-group mt-1">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-bar-chart"></i></span>
-												<input onkeyup="" type="text" style="height:45px;" autocomplete="off" required="required" name="amountinbtc" id="amountinbtc" class="form-control" placeholder="Enter amount in crypto" />
+												<input onkeyup="crypto_conversion_usd(this.value)" type="text" style="height:45px;" autocomplete="off" required="required" name="amountinbtc" id="amountinbtc" class="form-control byamountinbtc" placeholder="Enter amount in crypto" />
 											</div>
 										</div>
+										
+										<div class="by-response"></div>
 								
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
@@ -132,8 +134,8 @@
 											
 												<span class="input-group-addon">$</span>
 												
-												<input onkeyup="" type="text" style="height:45px;" autocomplete="off" required="required" name="amountinusd" id="amountinusd" class="form-control" min="" max="" placeholder="Enter amount in USD" />
-												
+												<input onkeyup="crypto_usd_conversion(this.value)" type="text" style="height:45px;" autocomplete="off" required="required" name="amountinusd" id="amountinusd" class="form-control byamountinusd" placeholder="Enter amount in USD" />
+											
 											</div>
 										</div>
 								
@@ -143,6 +145,8 @@
 								<!---<p id="conversion"></p>--->
 								
 								<input type="hidden" value="<?php echo sha1(uniqid());?>" name="etoken"/>
+								
+								<input type="reset" value="reset" style="display:none;" class="reset-buy"/>
 								
 							</form>
 							
@@ -157,4 +161,41 @@
 	</div>
 	
 </div>
+
+<script>
+													
+	function crypto_conversion_usd(amountInCrypto){
 		
+		let byasset = $(".byasset").val();
+		
+		let param = byasset+"-"+amountInCrypto;
+		
+		if(amountInCrypto == "" || isNaN(amountInCrypto)){
+			
+			showalert("Enter valid amount");
+			
+			return false;
+		}
+		
+		contentViewer(".by-response" , "convert_crypto_usd" , param);
+		
+	}
+
+	function crypto_usd_conversion(amountInDollar){
+		
+		let byasset = $(".byasset").val();
+		
+		let param = byasset+"-"+amountInDollar;
+		
+		if(amountInDollar == "" || isNaN(amountInDollar)){
+			
+			showalert("Enter valid amount");
+			
+			return false;
+		}
+		
+		contentViewer(".by-response" , "convert_usd_crypto" , param);
+		
+	}
+	
+</script>

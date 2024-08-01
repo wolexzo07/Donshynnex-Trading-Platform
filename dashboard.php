@@ -17,10 +17,12 @@
 		<link rel="stylesheet" href="css/wallets.css" type="text/css" media="all"/>
 		
 		<!--<script src="js/jquery-3.7.1.min.js"></script>-->
-		
 		<script src="js/jquery.js"></script>
 		<script src="js/toastify-js.js"></script>
 		<script src="js/indexController.js"></script>
+		
+		<script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 		<?php
 			if(sh_adminchecker($uid) == "1"){ // admin access
@@ -33,26 +35,34 @@
 		
         <script type="text/javascript" src="js/online.js"></script>
 		<script src="js/clipboard.min.js"></script>
-		<script src="workitout.js"></script>	
 		<script src="js/btcalone.js"></script>
 	
     </head>
 	
     <body>
 	
+	<script src="extra.js"></script>
+	<script src="workitout.js"></script>
+	
         <div class="wrapper">
 
             <div id="content">
 
-					<div class="container-fluid">
+					<!--<div class="container-fluid">--->
 					
 							<div class="row">
 							
-									<div class="col-md-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1">
+									
+										<?php include("smallChart.html");?>
+										
+									</div>
+							
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															
 										<h3 class="welcome"> 
 										
-											<font id="lblGreetings"></font>&nbsp;
+											<span id="lblGreetings"></span>&nbsp;
 											
 											<img src="img/smiley.png" class="smiley-img"/>
 											
@@ -66,13 +76,18 @@
 
 									</div>
 									
+									
+
 							</div>
-					</div>
+					<!--</div>-->
 
 
 					<div id="loadTemporal" class="text-center"></div>
 					
 					<div class="container-fluid" id="calculate"></div>
+					<div class="container-fluid" id="ca"></div>
+					
+					
 
             </div>
 			
@@ -97,9 +112,7 @@
 			
 		?>
 
-        <script src="js/bootstrap.min.js"></script>
-		
-        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
 		
 		<script type="text/javascript">
 		
@@ -123,30 +136,12 @@
 					
 				});
 				
-				let greet = "Hi , ";
-				
-				/***let myDate = new Date();
-				let hrs = myDate.getHours();
-				let greet;
+				document.getElementById('lblGreetings').innerHTML = '<img src="<?php echo $path_img;?>" style="width:30px;border-radius:500px;margin:0px;padding:0px;"/>&nbsp; '+'<b>Hi ,' + '<span style="color:black;"><?php echo ' '.$namex;?></span></b>';
 
-				if (hrs < 12)
-					
-					greet = 'Good Morning';
-					
-				else if (hrs >= 12 && hrs <= 17)
-					
-					greet = 'Good Afternoon';
-					
-				else if (hrs >= 17 && hrs <= 24)
-					
-					greet = 'Good Evening';***/
-
-				document.getElementById('lblGreetings').innerHTML = '<img src="<?php echo $path_img;?>" style="width:30px;border-radius:500px;" class=""/>&nbsp; '+'<b>' + greet + '<span style="color:black;"><?php echo ' '.$namex;?></span></b>';
-
-				
           });
-		  				
-        </script>   
+		 			
+        </script>  
+			
 
     </body>
 </html>

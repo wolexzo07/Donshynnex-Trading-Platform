@@ -1,5 +1,3 @@
-
-
 <div class="buy-assets">
 
 	<div class="container-fluid">

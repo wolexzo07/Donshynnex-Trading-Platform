@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>YungoPay - Dashboard</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<link rel="stylesheet" href="mainlib/css/bootstrap.min.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="mainlib/css/font-awesome.min.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/toastify.min.css"/>
+        <link rel="stylesheet" href="mainlib/css/style3.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/specialCustom.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/slider.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/btc.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/more.css" type="text/css" media="all"/>
+		<link rel="stylesheet" href="mainlib/css/wallets.css" type="text/css" media="all"/>
+		<link rel="shortcut icon" href="img/favico.png" type="image/x-icon"/>
+		
+		<!--<script src="mainlib/js/jquery-3.7.1.min.js"></script>-->
+		<script src="js/jquery.js"></script>
+		<script src="mainlib/js/toastify-js.js"></script>
+		<script src="mainlib/js/indexController.js"></script>
+		
+		<script src="mainlib/js/bootstrap.min.js"></script>
+        <script src="mainlib/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript" src="mainlib/js/online.js"></script>
+		<script src="js/clipboard.min.js"></script>
+		<script src="mainlib/js/btcalone.js"></script>		
+    </head>
+	
+    <body>
+	
+	<!---<script src="extra.js"></script>
+	<script src="workitout.js"></script>--->
+	
+        <div class="wrapper">
+
+            <div id="content">
+
+					<!--<div class="container-fluid">--->
+					
+							<div class="row">
+							
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															
+										<h3 class="welcome"> 
+										
+											<span id="lblGreetings" style="color:black;"></span>&nbsp;
+											
+											<img src="img/smiley.png" class="smiley-img"/>
+											
+											<span id="clickNote" onclick="load('Fetch_Notifications')" class="pull-right">
+											
+												<i class="fa fa-bell fa-1x"></i><span id="notecounter" class="badge"></span>
+											
+											</span>
+									
+										</h3>
+
+									</div>
+									
+									
+
+							</div>
+					<!--</div>-->
+
+
+					<div id="loadTemporal" class="text-center"></div>
+					
+					<div class="container-fluid" id="calculate"></div>
+					<!---<div class="container-fluid" id="ca"></div>--->
+					
+            </div>
+			
+        </div>
+		
+		
+		<!--------Bottom Menu---------------------->
+		
+		 <div class="menuTag">
+		 
+			<ul class="list-group">
+			
+				<li onclick="load('homedash')" class="list-group-item"><i class="fa fa-dashboard"></i>&nbsp;&nbsp; Dashboard 
+				<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+				</li>
+				
+				<li onclick="load('settings-base')" class="list-group-item"><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings
+				<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+				</li>
+				
+				<li onclick="logoutApp()" class="list-group-item"><i class="fa fa-sign-out"></i>&nbsp;&nbsp; Logout 
+				<span class="pull-right badge" style="background:lightgray;color:white;"></span>
+				</li>
+			
+			</ul>
+		 
+		 </div>       
+
+		<div class="mobilemenu">
+		
+			<div class="container-fluid">
+			
+			<div class="row">
+
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
+					<span onclick="window.location='dashboard'" class="btn btn-updated"><i class="fa fa-home fa-2x"></i><br/> Home</span>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left initiate-funding">
+					<span class="btn btn-updated"><i class="fa fa-credit-card"></i><br/> Fund</span>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left initiate-buying">
+					<span class="btn btn-updated"><i class="fa fa-arrow-up"></i><br/>Buy</span>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left initiate-selling">
+					<span  class="btn btn-updated"><i class="fa fa-arrow-down"></i><br/>Sell</span>
+				</div>
+				
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
+					<span id="menuGist" class="btn btn-updated"><i class="fa fa-bars fa-2x"></i><br/>Menu</span>
+				</div>
+					
+			</div>
+			
+			</div>
+			
+		</div>
+	
+		<!--------Bottom Menu---------------------->
+
+		<div class="fund-account"><!-----Account Funding-->
+
+			<div class="container-fluid">
+			
+				<div class="row">
+				
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+						
+						<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+						
+							<h4><i class="fa fa-arrow-left close-funding"></i> &nbsp;&nbsp;FIAT <span class="color-p"></span>FUNDING</h4>
+							
+							<div class="acct-fundng"></div>
+						
+						</div>
+						
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+						
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		<div class="buy-assets"><!--------Buying Assets---->
+
+			<div class="container-fluid">
+					
+				<div class="row">
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+						<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+						
+							<h4><i class="fa fa-arrow-left close-buying"></i> &nbsp;&nbsp;BUY <span class=""></span>CRYPTO</h4>
+							
+							<div class="asset-by"></div>
+						
+						</div>
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+
+		<div class="sell-assets"><!--------Selling Assets--->
+
+			<div class="container-fluid">
+					
+				<div class="row">
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+						<div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+							
+							<h4><i class="fa fa-arrow-left close-selling"></i> &nbsp;&nbsp;SELL <span class=""></span>CRYPTO</h4>
+							
+							
+							<div class="asset-sl"></div>
+							
+						</div>
+						<div class="col-md-2 col-lg-2 col-xs-12 col-sm-12"></div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	
+		
+		
+		
+		
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+		
+            $(document).ready(function () {
+			
+				checkuserlogin(); 
+			
+				let userID = getSession("user-id-yungopay");
+				let userToken = getSession("user-token-yungopay");
+				let userName = getSession("user-name-yungopay");
+				let userEmail = getSession("user-email-yungopay");
+				let extra_id = userID+"-"+userToken+"-"+userName+'-'+userEmail;
+				
+				load('homedash.html'); // load homepage content
+				
+				$("#menuGist").click(function(){ // menu toggle controller
+					
+					$(".menuTag").toggle("slow");
+					
+				});
+				
+				$("#lblGreetings").html("Hi, <b><span style='color:green;'>"+x_getNamex(userName,0)+"</span></b>");
+
+				contentViewer(".acct-fundng","funding-account",extra_id); // Getting account funding template
+				contentViewer(".asset-by","buying-asset",extra_id); //Getting asset buying template
+				contentViewer(".asset-sl","selling-asset",extra_id); // Getting asset selling template
+				
+				// Handling clicks of funding-buying-selling
+				
+				manageDivs(".initiate-funding" , ".fund-account" , ".close-funding");
+				manageDivs(".initiate-buying" , ".buy-assets" , ".close-buying");
+				manageDivs(".initiate-selling" , ".sell-assets" , ".close-selling");
+				
+				// form processing
+
+          });
+		 			
+        </script>  
+		
+		<script type="text/javascript" src="cordova.js"></script>
+		
+    </body>
+</html>

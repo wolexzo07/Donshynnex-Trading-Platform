@@ -21,23 +21,25 @@ include("validate_owner.php"); // Authenticating super user
 				
 			</li>
 			
-			<li onclick="load('registeredUsers')" class="list-group-item"><i class="fa fa-users"></i> &nbsp;&nbsp;Registered users <span class="badge pull-right badgestyle"><?php echo x_count("createusers","status='1' OR status='0' OR status='2'");?></span>
+			<li onclick="load('registeredUsers')" class="list-group-item"><i class="fa fa-users"></i> &nbsp;&nbsp;Registered users
 			</li>
 			
-			<li onclick="load('Track_Payments')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Pending Payments
-				<span class="pull-right badge badgestyle">2</span>
+			<li onclick="load('manageWallets')" class="list-group-item"><i class="fa fa-users"></i> &nbsp;&nbsp;Manage wallet
 			</li>
 			
-			<li onclick="load('Track_Payments')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Approved Payments
-				<span class="pull-right badge badgestyle">2</span>
+			<li onclick="load('Track_Payments')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Manage Top-ups
 			</li>
 			
-			<li onclick="load('Track_Payments')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Cancelled Payments
-				<span class="pull-right badge badgestyle">2</span>
+			<li onclick="load('allPayments')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Treated Top-ups
+			</li>
+			
+			<li onclick="load('sellingTransactions')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Manage Crypto Sellers
+			</li>
+			
+			<li onclick="load('BuyingTransaction')" class="list-group-item"><i class="fa fa-money"></i> &nbsp;&nbsp;Manage Crypto Buyers
 			</li>
 
 			<li onclick="load('AccountLogout')" class="list-group-item"><i class="fa fa-sign-out"></i>&nbsp;&nbsp; Logout 
-				<span class="pull-right badge" style="background:green;color:white;"></span>
 			</li>
 			
 		</ul>

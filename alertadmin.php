@@ -82,6 +82,8 @@
 			
 			
 			?>
+			
+				<div class="crypto-account" style="display:none;"></div>
 				
 				<div class="NGN-account" style="display:none;">
 					<table style="font-size:8pt;text-transform:;" class="mt-1 table">
@@ -125,7 +127,9 @@
 						
 						<select onchange="currencyChange(this.value)" required class="form-control" id="fiat-typ">
 							<option value=""> Fiat type...</option>
-							<?php sh_getallFiatCrypt("f" , "0") ;?>
+							
+							<?php sh_getAllfiatcrList();?>
+							
 						</select>
 						
 					</form>

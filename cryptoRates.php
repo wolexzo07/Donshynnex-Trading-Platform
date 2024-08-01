@@ -30,9 +30,13 @@
 		
 		?>
 		
-	
+		<li class="list-group-item chartter"></li>
 	</ul>
+	
 	
 	<style>
 		.crypt-img {width:30px;}
 	</style>
+
+	
+

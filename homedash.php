@@ -4,8 +4,6 @@
 		
 ?>
 	
-<!---<script src="workitout.js"></script>--->
-
 <div class="row">
 	
 	<?php include("cardsWallet.php");?>
@@ -25,8 +23,6 @@
 			
 
 	</div>
-	
-
 							
 </div>
 		

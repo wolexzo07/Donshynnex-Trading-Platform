@@ -11,9 +11,9 @@
 		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
 		</li>
 
-		<li onclick="load('btcConverter')" class="list-group-item"><i class="fa fa-calculator"></i>&nbsp;&nbsp; Bitcoin Calculator
+		<!---<li onclick="load('btcConverter')" class="list-group-item"><i class="fa fa-calculator"></i>&nbsp;&nbsp; Bitcoin Calculator
 		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
-		</li>
+		</li>--->
 		
 		<li onclick="load('settings-base')" class="list-group-item"><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings
 		<span class="pull-right badge" style="background:lightgray;color:white;"></span>
@@ -36,7 +36,7 @@
 		</div>--->
 		
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
-			<span class="btn btn-updated"><i class="fa fa-home fa-2x"></i><br/> Home</span>
+			<span onclick="window.location='dashboard'" class="btn btn-updated"><i class="fa fa-home fa-2x"></i><br/> Home</span>
 		</div>
 		
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left initiate-funding">

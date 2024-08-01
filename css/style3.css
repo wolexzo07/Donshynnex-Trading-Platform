@@ -5,6 +5,37 @@
 
 /**Myown styler***/
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fafafa;
+    /**background: purple;**/
+	background-image:url("../img/bg/7.jpg");
+	background-attachment:fixed;
+	background-size:cover;
+}
+
+#calculate{
+	height:auto;
+	padding-bottom:50pt;
+	opacity:1;
+	margin-top:0pt;
+}
+
+#content {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+	background-color:whitesmoke;
+	opacity:0.9;
+	overflow:auto;
+}
+
+
 .timove{
 	font-size:70pt;
 	/**text-align:center;***/
@@ -93,17 +124,8 @@
 .bton{
 	display:none;
 }
-#calculate{
-	height:auto;
-	/***
-	background:whitesmoke;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-	***/
-	padding-bottom:50pt;
-	padding-top:10pt;
-	opacity:1;
-	margin-top:10pt;
-}
+
+
 .portit{
 	/**padding:30px;**/
 	
@@ -165,15 +187,6 @@
 	color:grey;
 }
 /**Myown styler***/
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fafafa;
-    /**background: purple;**/
-	background-image:url("../img/bg/1.jpg");
-	background-attachment:fixed;
-	background-size:cover;
-}
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -340,12 +353,3 @@ a.article, a.article:hover {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
